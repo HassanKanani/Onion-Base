@@ -1,9 +1,10 @@
 ﻿
 using Domain.Entities.CategoryEntity;
+using Infrastructure.Common;
 using Infrastructure.Context;
 
 namespace Infrastructure.Implementaion;
-
+[ScopedRegistrationAttribute]
 public class CategoryRepository : ICategoryRepository
 {
     private readonly MyContext _context;

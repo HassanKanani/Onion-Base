@@ -15,6 +15,6 @@ public class CreateCategoryHandler : IRequestHandler<CreateCategoryCommand, bool
 
     public async Task<bool> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
     {
-        return await _categoryRepository.Add(new Category() { Name=request.Name}, cancellationToken);
+        return await _categoryRepository.Add(new Category() { Name=request.Name,CreateOn=DateTime.Now,CreateBy="test"}, cancellationToken);
     }
 }

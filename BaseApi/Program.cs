@@ -10,7 +10,7 @@ builder.Services.AddSwaggerGen();
 #region DataBase
 builder.Services.AddDbContext<MyContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 #endregion
-builder.Services.ExtenalServicesExtention();
+builder.Services.ExtenalServicesExtention( AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddMediatR(cfg =>cfg.RegisterServicesFromAssembly(typeof(CreateCategoryCommand).Assembly));
     
 var app = builder.Build();
