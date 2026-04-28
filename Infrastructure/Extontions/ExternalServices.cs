@@ -1,4 +1,5 @@
-﻿using Infrastructure.Common;
+﻿using Apllication.Defination;
+using Infrastructure.Common;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 namespace Infrastructure;
@@ -7,7 +8,9 @@ public static class ServicesExtensions
     public static void ExtenalServicesExtention(this IServiceCollection service, Assembly[] CurrentDomainAssembly)
     {
         #region IOC Container AutoFact
-       // service.AddScoped<ICategoryRepository,CategoryRepository>();
+        // service.AddScoped<ICategoryRepository,CategoryRepository>();
+        service.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
         #endregion
         #region Scoped Registration - Improved
 
