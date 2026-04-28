@@ -10,6 +10,9 @@ builder.Services.AddSwaggerGen();
 #region DataBase
 builder.Services.AddDbContext<MyContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 #endregion
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder => { builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader(); }));
+
 builder.Services.ExtenalServicesExtention( AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddMediatR(cfg =>cfg.RegisterServicesFromAssembly(typeof(CreateCategoryCommand).Assembly));
     
@@ -17,8 +20,14 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(option =>
+    {
+        option.DocumentTitle = "Clean Arch";
+        option.DefaultModelsExpandDepth(-1);
+    });
 }
+app.UseCors(x => x.AllowAnyMethod().AllowAnyHeader().SetIsOriginAllowed(origin => true).AllowCredentials());
+
 app.UseAuthorization();
 app.MapControllers();
 app.Run();

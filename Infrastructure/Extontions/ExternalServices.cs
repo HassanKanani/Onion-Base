@@ -7,6 +7,7 @@ public static class ServicesExtensions
 {
     public static void ExtenalServicesExtention(this IServiceCollection service, Assembly[] CurrentDomainAssembly)
     {
+
         #region IOC Container AutoFact
         // service.AddScoped<ICategoryRepository,CategoryRepository>();
         service.AddScoped(typeof(IRepository<>), typeof(Repository<>));
