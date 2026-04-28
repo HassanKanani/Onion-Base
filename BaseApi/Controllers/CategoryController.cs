@@ -18,4 +18,9 @@ public class CategoryController : ControllerBase
         var userId = await _mediator.Send(command);
         return Ok(userId);
     }
+    [HttpGet]
+    public  Task Get()
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -1,5 +1,6 @@
 
 using Apllication.CategoryCommand;
+using Apllication.Common;
 using Infrastructure;
 using Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
@@ -12,11 +13,11 @@ builder.Services.AddDbContext<MyContext>(option => option.UseSqlServer(builder.C
 #endregion
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder => { builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader(); }));
-
 builder.Services.ExtenalServicesExtention( AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddMediatR(cfg =>cfg.RegisterServicesFromAssembly(typeof(CreateCategoryCommand).Assembly));
     
 var app = builder.Build();
+app.UseCustomErrorHandling();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
