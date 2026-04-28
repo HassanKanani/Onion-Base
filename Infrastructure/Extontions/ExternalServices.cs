@@ -10,6 +10,9 @@ public static class ServicesExtensions
         service.AddScoped<ICategoryRepository,CategoryRepository>();
         #endregion
 
+
+
+
     }
 
 }

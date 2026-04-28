@@ -1,5 +1,6 @@
 ﻿
 using Domain.Entities.CategoryEntity;
+using Infrastructure.Extontions;
 using Microsoft.EntityFrameworkCore;
 namespace Infrastructure.Context;
 
@@ -8,10 +9,9 @@ public class MyContext : DbContext
     public MyContext(DbContextOptions<MyContext> options) : base(options) { }
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        //builder.ConfigurationDb();
-        //builder.ApplyConfigurationsEntity();
+        builder.ConfigurationDb();
+        builder.ApplyConfigurationsEntity();
 
 
     }
-    public DbSet<Category> Categories { get; set; }
 }
