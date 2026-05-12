@@ -23,4 +23,16 @@ public class CategoryController : ControllerBase
         return await _services.Add(category, cancellationToken);
 
     }
+    [HttpGet]
+    public async Task<Category> Get(int Id)
+    {
+        return await _services.GetByKey(Id);
+
+    }
+    [HttpPut]
+    public async Task<bool> Update(Category Id,CancellationToken cancellationToken)
+    {
+        return await _services.Update(Id,cancellationToken);
+
+    }
 }

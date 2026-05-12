@@ -21,4 +21,24 @@ public class CategoryRepository : ICategoryRepository
       await  _context.SaveChangesAsync(cancellationToken);
         return true;
     }
+
+
+    public async Task<Category>GetByKey(int Key)
+    {
+        return await _context.Categories.FindAsync(Key);
+    }
+    public async Task<string> GetNameByKey(int Key)
+    {
+        var res= await _context.Categories.FindAsync(Key);
+        return res.Name;
+    }
+    public async Task<bool> Update(Category category, CancellationToken cancellationToken)
+    {
+
+
+        // _context.Update(category);
+        await _context.SaveChangesAsync(cancellationToken);
+        return true;
+    }
+
 }
