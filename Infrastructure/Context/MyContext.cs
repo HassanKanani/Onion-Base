@@ -1,5 +1,4 @@
 ﻿
-using Domain.Entities.CategoryEntity;
 using Infrastructure.Extontions;
 using Microsoft.EntityFrameworkCore;
 namespace Infrastructure.Context;
