@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Apllication.CategoryCommand;
 
-public class CreateCategoryHandler : IRequestHandler<CreateCategoryCommand, bool>
+public class CreateCategoryHandler : IRequestHandler<CreateCategoryCommand, Category>
 {
     private readonly ICategoryRepository _categoryRepository;
 
@@ -13,8 +13,9 @@ public class CreateCategoryHandler : IRequestHandler<CreateCategoryCommand, bool
         _categoryRepository = categoryRepository;
     }
 
-    public async Task<bool> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
+    public async Task<Category> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
     {
-        return await _categoryRepository.Add(new Category() { Name=request.Name,CreateOn=DateTime.Now,CreateBy="test"}, cancellationToken);
+     
+        return await _categoryRepository.AddAsync(new Category() { Name=request.Name,CreateOn=DateTime.Now,CreateBy="test"}, cancellationToken);
     }
 }

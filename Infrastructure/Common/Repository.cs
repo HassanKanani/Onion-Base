@@ -8,10 +8,12 @@ using System.Linq.Expressions;
 namespace Infrastructure.Common;
 public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity
 {
+    private readonly IHttpContextAccessor? _httpContextAccessor;
     protected readonly DbContext _dbContext;
     protected readonly DbSet<TEntity> _dbSet;
-    private readonly IHttpContextAccessor? _httpContextAccessor;
+    protected virtual IQueryable<TEntity> Table => _dbSet;
 
+    protected virtual IQueryable<TEntity> TableNoTracking => _dbSet.AsNoTracking();
     public Repository(DbContext dbContext, IHttpContextAccessor? httpContextAccessor = null)
     {
         _dbContext = dbContext;

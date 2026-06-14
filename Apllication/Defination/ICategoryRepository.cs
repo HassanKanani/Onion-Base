@@ -1,7 +1,8 @@
 ﻿
+using Apllication.Defination;
+
 namespace Domain.Entities.CategoryEntity;
 
-public interface ICategoryRepository
+public interface ICategoryRepository : IRepository<Category>
 {
-    Task<bool>Add(Category category,CancellationToken cancellationToken);
 }
