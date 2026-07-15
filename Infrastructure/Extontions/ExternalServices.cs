@@ -1,5 +1,8 @@
-﻿using Apllication.Defination;
+﻿using Apllication.Create;
+using Apllication.Defination;
+using Apllication.GetByKey;
 using Infrastructure.Common;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 namespace Infrastructure;
@@ -10,7 +13,6 @@ public static class ServicesExtensions
 
         #region IOC Container AutoFact
         // service.AddScoped<ICategoryRepository,CategoryRepository>();
-        service.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
         #endregion
         #region Scoped Registration - Improved
